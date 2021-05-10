@@ -14,4 +14,11 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `npm build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
+##references: 
+
+https://www.ag-grid.com/angular-grid/getting-started/
+
+https://blog.ag-grid.com/using-third-party-datepickers-in-ag-grid/
+
+https://www.ag-grid.com/angular-grid/getting-started/
 
