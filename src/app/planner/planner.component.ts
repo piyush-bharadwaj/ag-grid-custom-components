@@ -6,6 +6,7 @@ import { InputNumberComponent } from '../components/input-number/input-number.co
 import { InputTextComponent } from '../components/input-text/input-text.component';
 import { PlanDataService } from '../shared/plan-data.service';
 import { Plan } from '../shared/plan';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-planner',
@@ -16,6 +17,7 @@ export class PlannerComponent implements OnInit {
   gridApi: any;
   opPlans:Plan[] = [];
   columnDefs = columnDefinition;
+  planSubscription$: Subscription ;
 
   constructor(private planDataService: PlanDataService) {
   }
@@ -25,6 +27,7 @@ export class PlannerComponent implements OnInit {
   }
   //fetch grid records
   getOpPlans(): void {
+    this.planSubscription$ = 
     this.planDataService.getOpPlans()
       .subscribe(plans => (this.opPlans = plans)
       );
@@ -41,4 +44,7 @@ export class PlannerComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
   }
+  ngOnDestroy() {
+    this.planSubscription$.unsubscribe();
+}
 }
