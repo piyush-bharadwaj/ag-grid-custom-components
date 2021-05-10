@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient } from "@angular/common/http";
+import { Plan } from "./plan"
 
 @Injectable({
   providedIn: "root"
@@ -9,10 +10,10 @@ import { HttpClient } from "@angular/common/http";
 export class PlanDataService {
   constructor(private httpClient :HttpClient) {}
  
-  getOpPlans(): Observable<any[]> {
-    return this.httpClient.get<any[]>('assets/plan-data.json')
+  getOpPlans(): Observable<Plan[]> {
+    return this.httpClient.get<Plan[]>('assets/plan-data.json')
       .pipe(
-        tap(_ => console.log('fetched heroes'))
+        tap(_ => console.log('fetched plan date'))
         )      
   }
 }

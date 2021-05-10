@@ -3,6 +3,7 @@ function numberParser(params) {
   }
   
   export const columnDefinition = [
+    { field: "id", headerName: "id", hide: true },
     {
       headerName: "Comment",
       field: "comment",
@@ -10,14 +11,21 @@ function numberParser(params) {
       cellEditor: "textAreaComponent"
     },
     {
-      headerName: "Date",
-      field: "date",
+      headerName: "Start Date",
+      field: "sdate",
       editable: true,
       cellEditor: "datePickerComponent"
     },
     {
-      headerName :"Message",
-      field : "message",
+      headerName: "End Date",
+      field: "edate",
+      editable: true,
+      hide:true,
+      cellEditor: "datePickerComponent"
+    },
+    {
+      headerName :"Plan Name",
+      field : "name",
       editable:true,
       cellStyle: { 'text-decoration': 'underline' },
       cellEditor:"inputTextComponent"

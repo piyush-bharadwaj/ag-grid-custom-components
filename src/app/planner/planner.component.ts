@@ -4,7 +4,8 @@ import { TextAreaComponent } from '../components/text-area/text-area.component';
 import { DatePickerComponent } from '../components/date-picker/date-picker.component';
 import { InputNumberComponent } from '../components/input-number/input-number.component';
 import { InputTextComponent } from '../components/input-text/input-text.component';
-import { PlanDataService } from '../shared/plan-data.service'
+import { PlanDataService } from '../shared/plan-data.service';
+import { Plan } from '../shared/plan';
 
 @Component({
   selector: 'app-planner',
@@ -13,7 +14,7 @@ import { PlanDataService } from '../shared/plan-data.service'
 })
 export class PlannerComponent implements OnInit {
   gridApi: any;
-  opPlans = [];
+  opPlans:Plan[] = [];
   columnDefs = columnDefinition;
 
   constructor(private planDataService: PlanDataService) {
