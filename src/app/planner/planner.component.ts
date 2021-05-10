@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {columnDefinition } from './grid-config';
-import {TextAreaComponent} from '../components/text-area/text-area.component';
+import { columnDefinition } from './grid-config';
+import { TextAreaComponent } from '../components/text-area/text-area.component';
 import { DatePickerComponent } from '../components/date-picker/date-picker.component';
 import { InputNumberComponent } from '../components/input-number/input-number.component';
 import { InputTextComponent } from '../components/input-text/input-text.component';
+import { PlanDataService } from '../shared/plan-data.service'
 
 @Component({
   selector: 'app-planner',
@@ -12,42 +13,27 @@ import { InputTextComponent } from '../components/input-text/input-text.componen
 })
 export class PlannerComponent implements OnInit {
   gridApi: any;
-
-  rowData = [
-    {
-      comment:"plan started",
-      date: "05/05/2021",
-      message:"",
-      $$Value: 10,
-      cmpValue: 5,
-      IMPSValue: 8
-    },
-    {
-      comment:"",
-      date: "06/05/2021",
-      message:"",
-      $$Value: 10,
-      cmpValue: 5,
-      IMPSValue: 5
-    },
-    {
-      comment:"",
-      date: "04/05/2021",
-      message:"",
-      $$Value: 30,
-      cmpValue: 15,
-      IMPSValue: 1
-    }
-  ];
+  opPlans = [];
   columnDefs = columnDefinition;
-  constructor() {}
 
-  ngOnInit() {}
+  constructor(private planDataService: PlanDataService) {
+  }
+
+  ngOnInit() {
+    this.getOpPlans();
+  }
+  //fetch grid records
+  getOpPlans(): void {
+    this.planDataService.getOpPlans()
+      .subscribe(plans => (this.opPlans = plans)
+      );
+
+  }
 
   gridOptions = {
     frameworkComponents: {
       datePickerComponent: DatePickerComponent,
-      textAreaComponent:TextAreaComponent,
+      textAreaComponent: TextAreaComponent,
       inputTextComponent: InputTextComponent
     }
   };
